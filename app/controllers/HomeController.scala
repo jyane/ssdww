@@ -10,4 +10,3 @@ class HomeController @Inject() extends Controller {
     Ok("this is api server")
   }
 }
-
