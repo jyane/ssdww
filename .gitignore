@@ -13,7 +13,6 @@ bin/
 .eclipse
 /lib/
 /logs/
-/modules
 /project/target
 /target
 tmp/
