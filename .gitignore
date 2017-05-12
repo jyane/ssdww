@@ -21,3 +21,6 @@ server.pid
 *.eml
 /dist/
 .cache
+
+# fronend
+node_modules
