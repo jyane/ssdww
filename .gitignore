@@ -23,4 +23,5 @@ server.pid
 .cache
 
 # fronend
+bundle.js
 node_modules
