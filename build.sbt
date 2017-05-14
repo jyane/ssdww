@@ -25,7 +25,10 @@ lazy val domain = (project in file("modules/domain"))
 
 lazy val app = (project in file("modules/app"))
   .settings(commonSettings)
-  .dependsOn(domain % "compile->compile;test->test")
+  .dependsOn(
+    domain % "compile->compile;test->test",
+    infra % "compile->compile;test->test"
+  )
   .enablePlugins(PlayScala)
 
 lazy val infra = (project in file("modules/infra"))

@@ -1,3 +1,5 @@
 GET     /                              controllers.HomeController.index
 POST    /api/v1/notification/send      controllers.NotificationController.send
-GET     /assets/*file                  controllers.Assets.versioned(path="/public", file: Asset)
+
+GET   /sw.js                           controllers.Assets.at(path="/public", file="sw.js")
+GET   /assets/*file                    controllers.Assets.versioned(path="/public", file: Asset)
