@@ -11,9 +11,10 @@
   self.addEventListener('push', (e) => {
     const body = e.data ? e.data.text() : 'e.data is null or undefined';
     e.waitUntil(
-      self.registration.showNotification('test', {
+      self.registration.showNotification('vv', {
         body,
-        tag: 'a'
+        tag: 'a',
+        requireInteraction: true
       })
     );
   }, false);

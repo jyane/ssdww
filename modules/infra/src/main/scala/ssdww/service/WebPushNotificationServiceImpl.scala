@@ -22,13 +22,38 @@ class WebPushNotificationServiceImpl extends WebPushNotificationService {
       sendRequest.ttl
     )
 
-  override def send(sendRequest: SendRequest): Unit = {
+  def multiSend(sendRequest: SendRequest) = {
     val service = new PushService(publicKey, privateKey, "")
-    val notification = sendRequestToNotification(sendRequest)
-    val response = service.send(notification)
-    val status = response.getStatusLine.getStatusCode
-    println(response)
-    println("status = " + status)
+    service.send(sendRequestToNotification(sendRequest))
+    Thread.sleep(500)
+    service.send(sendRequestToNotification(
+      new SendRequest(
+        sendRequest.endpoint,
+        "2",
+        sendRequest.publicKey,
+        sendRequest.userAuth,
+        sendRequest.ttl
+      )
+    ))
+    Thread.sleep(500)
+    service.send(sendRequestToNotification(
+      new SendRequest(
+        sendRequest.endpoint,
+        "3",
+        sendRequest.publicKey,
+        sendRequest.userAuth,
+        sendRequest.ttl
+      )
+    ))
+  }
+
+  override def send(sendRequest: SendRequest): Unit = {
+    multiSend(sendRequest)
+//    val notification = sendRequestToNotification(sendRequest)
+//    val response = service.send(notification)
+//    val status = response.getStatusLine.getStatusCode
+//    println(response)
+//    println("status = " + status)
     ()
   }
 }
